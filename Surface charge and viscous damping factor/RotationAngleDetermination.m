@@ -9,15 +9,13 @@ kB = 1.38064852e-23; %Boltzman constant
 samplingrate = 30000;
 dat = load('trj.dat');
 %% 
-cal_factorx = 2.01615E-6; % [m/V] 
-cal_factory = 2.39308E-6; % [m/V] 
 
 dt = 1/samplingrate;
 Vx = dat(:,2); %<--y [wrt AC field]
 Vy = dat(:,1); %<--x [wrt AC field]
 Vsum = dat(:,3);
-x = (Vx./Vsum).*cal_factorx;
-y = (Vy./Vsum).*cal_factory;
+x = (Vx./Vsum); % In QPD units
+y = (Vy./Vsum); % In QPD units
 %centering data to zero
 x = x - repmat(mean(x),size(x,1),1);
 y = y - repmat(mean(y),size(y,1),1);
@@ -56,22 +54,22 @@ while ll == 1
 
     figure(1);
     subplot(1,3,1);
-    scatter(rotated_data(1:10000,1).*10^9,rotated_data(1:10000,2).*10^9);
-    xlabel('x [nm]');
-    ylabel('y [nm]');
+    scatter(rotated_data(1:10000,1),rotated_data(1:10000,2));
+    xlabel('x [QPD units]');
+    ylabel('y [QPD units]');
     title('Position fluctuation');
     axis equal;
     box on;
     subplot(1,3,2);
     loglog(r_yff1,r_ypsd1,'o-');
     xlabel('f [Hz]');
-    ylabel('S_{yy} [m^2/Hz]');
+    ylabel('S_{yy} [QPD units^2/Hz]');
     title('y-direction');
     box on;
     subplot(1,3,3);
     loglog(r_yff1,r_xpsd1,'o-');
     xlabel('f [Hz]');
-    ylabel('S_{xx} [m^2/Hz]');
+    ylabel('S_{xx} [QPD units^2/Hz]');
     title('x-direction');
     box on;
     shg;
