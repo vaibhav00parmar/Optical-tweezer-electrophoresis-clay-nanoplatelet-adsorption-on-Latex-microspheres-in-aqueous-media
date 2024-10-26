@@ -1,7 +1,6 @@
 clear;
 close all;
 
-% input parameters
 R = (1/2)*1e-6; %Probe radius [m]
 fAC = 7991.9; %AC signal frequency
 T = 24; %bath temperature
@@ -12,7 +11,7 @@ dat = load('trj.dat');
 %% 
 cal_factorx = 2.01615E-6; % [m/V] 
 cal_factory = 2.39308E-6; % [m/V] 
-%%
+
 dt = 1/samplingrate;
 Vx = dat(:,2); %<--y [wrt AC field]
 Vy = dat(:,1); %<--x [wrt AC field]
