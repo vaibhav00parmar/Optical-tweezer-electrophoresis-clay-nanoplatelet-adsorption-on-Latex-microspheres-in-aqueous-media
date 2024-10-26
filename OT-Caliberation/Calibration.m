@@ -30,7 +30,7 @@ t1 = (0:1/samplingrate:(N/samplingrate))';
 
 % Calculating the power spectral density
 ll = 8;
-NN = N/(ll*samplingrate);
+NN = floor(N/(ll*samplingrate));
 L = ll*samplingrate;
 xpsd = zeros(L,NN);
 for i = 1:NN
@@ -109,4 +109,3 @@ cal_factor = (1/beta);
 XX = ['cal factor = ',num2str(cal_factor),' m/V.'];
 disp(XX);
 end
-
